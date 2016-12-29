@@ -1,5 +1,5 @@
 dry-run: null
-hookfiles: test/hooks/index.js
+hookfiles: test/hooks-separate-files/*-hooks.js
 language: nodejs
 sandbox: false
 server: null

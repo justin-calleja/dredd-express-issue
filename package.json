@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dredd": "./node_modules/.bin/dredd --config=./dredd.yml",
+    "dredd-es6": "babel-node ./node_modules/.bin/dredd --config=./dredd-es6.yml",
+    "dredd-separate-files": "./node_modules/.bin/dredd --config=./dredd-separate-files.yml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
     "dredd": "^2.2.5"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0"
   }
 }
