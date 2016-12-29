@@ -1,0 +1,149 @@
+FORMAT: 1A
+
+# CMS
+
+Sit modi fugiat natus ea expedita veniam veritatis! Incidunt tempore.
+
+# CMS API Root [/]
+
+Sit modi fugiat natus ea expedita veniam veritatis! Incidunt tempore.
+
+## Retrieve the Entry Point [GET]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "content_objects_url": "/content-objects",
+            "docs_url": "/docs"
+        }
+
+# Group ContentObjects routes
+
+Sit modi fugiat natus ea expedita veniam veritatis! Incidunt tempore.
+
+## ContentObject collection [/content-objects]
+
+### Create ContentObject [POST]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "contentObjectId": "1",
+            "location": "/content-objects/1?version=0"
+        }
+
+### Read paginated ContentObjects [GET /content-objects/{?page,limit,resultsAttrsToExclude,x}]
+
++ Parameters
+    + page: 1 (optional, number) - Elit magnam velit hic nemo?
+        + Default: `1`
+    + limit: 20 (optional, number) - Elit magnam velit hic nemo?
+        + Default: `20`
+    + resultsAttrsToExclude: id (optional, array) - Elit magnam velit hic nemo?
+    + x: value (optional, array) - Elit magnam velit hic nemo?
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "results": [
+                {
+                    "contentObjectId": 17,
+                    "version": 3,
+                    "createdAt": "2016-12-18T16:38:00.934Z",
+                    "deletedAt": null
+                },
+                {
+                    "contentObjectId": 22,
+                    "version": 3,
+                    "createdAt": "2016-12-18T16:38:00.951Z",
+                    "deletedAt": null
+                },
+                {
+                    "contentObjectId": 27,
+                    "version": 3,
+                    "createdAt": "2016-12-18T16:38:00.969Z",
+                    "deletedAt": null
+                }
+            ],
+            "resultsCount": 3,
+            "total": 43,
+            "limit": 3,
+            "page": 2,
+            "pages": 15,
+            "next": "/content-objects?x%5B0%5D=id&x%5B1%5D=value&limit=3&page=3",
+            "previous": "/content-objects?x%5B0%5D=id&x%5B1%5D=value&limit=3&page=1"
+        }
+
++ Response 400 (application/json; charset=utf-8)
+
+        {
+            "message": "Cannot get page 25 which is greater than the number of pages (15) at limit 3"
+        }
+
+## ContentObject [/content-objects/{contentObjectId}]
+
+### Read a ContentObject [GET /content-objects/{contentObjectId}{?version,force,attrsToExclude,x}]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "id": 91,
+            "contentObjectId": 21,
+            "version": 3,
+            "value": "{\"a\":1}",
+            "deltaPrev": {
+                "type": [
+                    "text",
+                    0,
+                    0
+                ],
+                "a": [
+                    1
+                ]
+            },
+            "createdAt": "2016-12-18T16:38:00.870Z",
+            "deletedAt": null
+        }
+
++ Response 400 (application/json; charset=utf-8)
+
+        {
+            "message": "Could not find content object with contentObjectId '21' and version 'LATEST'"
+        }
+
++ Parameters
+    + contentObjectId: 21 (required, string) - Amet eius necessitatibus corrupti dolores.
+    + version: 3 (optional, number) - Elit molestias necessitatibus nam dolorum.
+    + force: false (optional, boolean) - Adipisicing blanditiis sint corporis reprehenderit.
+    + attrsToExclude: id (optional, array) - Elit accusamus esse laboriosam corrupti.
+    + x: value (optional, array) - Elit fugiat odio aperiam quae?
+
+### Create new ContentObject version [POST /content-objects/{contentObjectId}]
+
+Creates a new ContentObject version by POSTing a delta.
+
++ Request (application/json; charset=utf-8)
+
+        {
+            "type": ["text", "text/plain"]
+        }
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "location": "/content-objects/21?version=6"
+        }
+
++ Parameters
+    + contentObjectId: 21 (required, string) - Ipsum quam eius doloribus atque.
+
+### Delete ContentObject [DELETE /content-objects/{contentObjectId}]
+
++ Response 200 (application/json; charset=utf-8)
+
+        {
+            "deletionCount": 1
+        }
+
++ Parameters
+    + contentObjectId: 21 (required, string) - Ipsum consectetur excepturi nulla illo.
